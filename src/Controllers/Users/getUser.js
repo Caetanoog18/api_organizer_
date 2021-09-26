@@ -8,7 +8,7 @@ exports.getUser = async (req, res) => {
 
     const user = await prisma.user.findUnique({
         where:{
-            username: Number(req.params.username)
+            username: String(req.params.username)
         }
     });
 
