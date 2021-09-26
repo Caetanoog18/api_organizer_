@@ -7,8 +7,8 @@ const updateAPI = require("../../Controllers/APIs/updateAPI");
 const deleteAPI = require("../../Controllers/APIs/deleteAPI");
 
 router.post('/create', createAPI.createApi);
-router.get('/byId/:id?', getAPI.getApi);
 router.get('/all', getAPIs.getAllApis);
+router.get('/byId/:id?', getAPI.getApi);
 router.patch('/update/:id?', updateAPI.updateApi);
 router.delete('/delete/:id?', deleteAPI.deleteApi);
 
