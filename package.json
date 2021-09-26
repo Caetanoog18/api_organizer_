@@ -1,0 +1,32 @@
+{
+  "name": "api_organizer",
+  "version": "1.0.0",
+  "description": "Backend using prisma and express js with t",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CaetanoGS/api_organizer_.git"
+  },
+  "author": "Gustavo Caetano de Souza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CaetanoGS/api_organizer_/issues"
+  },
+  "homepage": "https://github.com/CaetanoGS/api_organizer_#readme",
+  "devDependencies": {
+    "@types/node": "^16.10.1",
+    "prisma": "^3.1.1",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.3"
+  },
+  "dependencies": {
+    "@prisma/client": "^3.1.1",
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.13"
+  }
+}
