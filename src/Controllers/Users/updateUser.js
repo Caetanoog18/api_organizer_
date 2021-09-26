@@ -9,16 +9,22 @@ exports.updateUser = async (req, res) => {
     if(req.params.username == null)
         res.sendStatus(400);
     else{
-        const user = await prisma.user.update({
-            where: {
-                username: req.params.username
-            },
-            data: data
+        try{
+            const user = await prisma.user.update({
+                where: {
+                    username: req.params.username
+                },
+                data: data
 
-        });
+            });
 
-        delete user.password;
+            delete user.password;
 
-        res.status(200).json(user);
+            res.status(200).json(user);
+
+        }catch (e) {
+            res.status(400).json(e);
+        }
+
     }
 }
