@@ -17,7 +17,7 @@ exports.updateCompany = async (req, res) => {
         try{
             const company = await prisma.company.update({
                 where: {
-                    id: req.params.id
+                    id: Number(req.params.id)
                 },
                 data: data
 

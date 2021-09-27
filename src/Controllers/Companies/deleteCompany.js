@@ -9,7 +9,7 @@ exports.deleteCompany = async (req, res) => {
         try{
             await prisma.company.delete({
                 where: {
-                    id: req.params.id
+                    id: Number(req.params.id)
                 },
             });
 

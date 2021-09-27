@@ -3,9 +3,6 @@ const salt = bcrypt.genSaltSync(10);
 
 exports.resolveUpdateData = async (name, email, description, employees) => {
 
-    if(employees && employees.password)
-        employees.password = bcrypt.hashSync(String(employees.password), salt);
-
     let data = {};
 
     if(employees)
@@ -15,9 +12,7 @@ exports.resolveUpdateData = async (name, email, description, employees) => {
             description: description,
             employees: {
                 connect: {
-                    where: {
-                        id: Number(employees.id)
-                    }
+                    id: Number(employees.id)
                 }
             }
         }
