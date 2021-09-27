@@ -1,9 +1,15 @@
 const {PrismaClient} = require("@prisma/client");
+const {resolveUpdateData} = require("../Companies/services/updateCompany");
 const prisma = new PrismaClient();
 
 exports.updateCompany = async (req, res) => {
 
-    // TODO: Create resolve data for company update
+    let data = await resolveUpdateData(
+        req.body.name,
+        req.body.email,
+        req.body.description,
+        req.body.employees
+    );
 
     if(req.params.id == null)
         res.sendStatus(400);

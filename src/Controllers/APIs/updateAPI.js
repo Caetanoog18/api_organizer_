@@ -1,9 +1,16 @@
 const {PrismaClient} = require("@prisma/client");
+const {resolveUpdateData} = require("../APIs/services/updateAPI");
 const prisma = new PrismaClient();
 
 exports.updateApi = async (req, res) => {
 
-    // TODO: Create resolve data for API update
+    let data = await resolveUpdateData(
+        req.body.name,
+        req.body.description,
+        req.body.documentation_url,
+        req.body.private,
+        req.body.authorId
+    )
 
     if(req.params.id == null)
         res.sendStatus(400);
