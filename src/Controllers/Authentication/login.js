@@ -19,12 +19,19 @@ exports.login = async (req, res) => {
         }
     });
 
-    bcrypt.compare(req.body.password, hashPassword, function(err, _) {
-        if(err) res.status(401);
+    bcrypt.compare(req.body.password, hashPassword, async function (err, _) {
+        if (err) res.status(401);
 
         const accessToken = JWT.sign({username: req.body.username}, process.env.ACCESS_TOKEN_SECRET,
             {expiresIn: '1440m'});
         const refreshToken = JWT.sign({username: req.body.username}, process.env.REFRESH_TOKEN_SECRET);
+
+        await prisma.user.update({
+            where: {
+                username: req.body.username
+            },
+            data: {accessToken: accessToken, refreshToken: refreshToken}
+        });
 
         res.status(201).send({token: accessToken, refreshToken: refreshToken});
     });
