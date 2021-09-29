@@ -7,7 +7,7 @@ const updateUser = require("../../Controllers/Users/updateUser");
 const deleteUser = require("../../Controllers/Users/deleteUser");
 const {validateJWT} = require ("../../Controllers/Authentication/JWT/services/authenticateJWT");
 
-router.post('/create', createUser.createUser);
+router.post('/register', createUser.createUser);
 router.get('/byUsername/:username', validateJWT, getUser.getUser);
 router.get('/all', validateJWT,  getUsers.getAllUsers);
 router.patch('/update/:username?', validateJWT, updateUser.updateUser);
