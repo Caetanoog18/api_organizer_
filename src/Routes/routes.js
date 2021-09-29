@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const userRoutes = require("../Routes/Users/userRoute");
 const companyRoutes = require("../Routes/Companies/companyRoute");
 const apiRoutes = require('../Routes/APIs/apiRoute');
-const authenticationRoutes = require('../Routes/Authentication/login');
+const authenticationRoutes = require('./Authentication/authenticationRoute');
 
 const app = express();
 

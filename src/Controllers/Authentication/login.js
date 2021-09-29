@@ -22,8 +22,10 @@ exports.login = async (req, res) => {
     bcrypt.compare(req.body.password, hashPassword, function(err, _) {
         if(err) res.status(401);
 
-        const accessToken = JWT.sign({username: req.body.username}, process.env.ACCESS_TOKEN_SECRET);
+        const accessToken = JWT.sign({username: req.body.username}, process.env.ACCESS_TOKEN_SECRET,
+            {expiresIn: '1440m'});
+        const refreshToken = JWT.sign({username: req.body.username}, process.env.REFRESH_TOKEN_SECRET);
 
-        res.status(201).send({token: accessToken});
+        res.status(201).send({token: accessToken, refreshToken: refreshToken});
     });
 }
