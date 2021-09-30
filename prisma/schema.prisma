@@ -17,10 +17,10 @@ model User {
     password String
     accessToken String @default("")
     refreshToken String[]
-    permission String[]
+    group String @default("viewer")
 
     company Company[]
-    apis API[]
+    apis Api[]
 }
 
 model Company {
@@ -32,7 +32,7 @@ model Company {
     employees User[]
 }
 
-model API {
+model Api {
     id Int @id @default(autoincrement())
     name String
     description String

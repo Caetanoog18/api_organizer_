@@ -6,6 +6,9 @@ const prisma = new PrismaClient();
 
 exports.createUser = async (req, res) => {
 
+    if(req.body.group == null || !req.body.group in ["manager", "viewer"])
+        req.body.group = "viewer";
+
     const accessToken = JWT.sign({username: req.body.username}, process.env.ACCESS_TOKEN_SECRET,
         {expiresIn: '1440m'});
     const refreshToken = JWT.sign({username: req.body.username}, process.env.REFRESH_TOKEN_SECRET);
@@ -17,7 +20,8 @@ exports.createUser = async (req, res) => {
                 name: req.body.name,
                 password: bcrypt.hashSync(String(req.body.password), salt),
                 accessToken: accessToken,
-                refreshToken: refreshToken
+                refreshToken: refreshToken,
+                group: req.body.group
             }
         });
         res.status(201).json(newUser);
